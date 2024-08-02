@@ -11,7 +11,7 @@ return {
         config = function()
             local mason = require("mason-lspconfig")
             mason.setup({
-                ensure_installed = { "lua_ls", "volar", "tsserver" }
+                ensure_installed = { "lua_ls" }
             })
         end
     },
@@ -27,12 +27,12 @@ return {
                     plugins = {
                         {
                             name = "@vue/typescript-plugin",
-                            location = "/home/plefevre/lib/node-v20.11.0-linux-x64/bin/vue-language-server",
+                            location = os.getenv("NODE_HOME") .. "/bin/vue-language-server",
                             languages = { "vue" }
                         }
                     }
                 },
-                filetypes = {"typescript", "javascript", "typescriptreact", "javascriptreact", "vue"}
+                filetypes = {"typescript", "javascript", "typescriptreact", "javascriptreact", "vue" }
             })
 
             vim.keymap.set("n", "<leader>ca", function()
@@ -40,17 +40,4 @@ return {
             end)
         end
     },
-    {
-        "nvimtools/none-ls.nvim",
-        config = function()
-            local null_ls = require("null-ls")
-            local sources = {
-                null_ls.builtins.formatting.stylua,
-                null_ls.builtins.completion.spell,
-            }
-            null_ls.setup({
-                sources = sources
-            })
-        end
-    }
 }
