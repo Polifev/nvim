@@ -32,11 +32,19 @@ return {
                         }
                     }
                 },
-                filetypes = {"typescript", "javascript", "typescriptreact", "javascriptreact", "vue" }
+                filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact", "vue" }
             })
 
+            -- Keymaps
             vim.keymap.set("n", "<leader>ca", function()
-                vim.lsp.buf.code_action({apply=true})
+                vim.lsp.buf.code_action({ apply = true })
+            end)
+            vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
+            vim.keymap.set("n", "<leader>gD", vim.lsp.buf.declaration, {})
+            vim.keymap.set("n", "<leader>gi", vim.lsp.buf.implementation, {})
+            vim.keymap.set("n", "<leader>rr", vim.lsp.buf.rename, {})
+            vim.keymap.set("n", "F", function()
+                vim.lsp.buf.format()
             end)
         end
     },
