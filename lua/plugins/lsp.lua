@@ -11,7 +11,7 @@ return {
         config = function()
             local mason = require("mason-lspconfig")
             mason.setup({
-                ensure_installed = { "lua_ls" }
+                ensure_installed = { "rust_analyzer", "lua_ls", "gopls", "intelephense", "pyright" }
             })
         end
     },
@@ -32,8 +32,12 @@ return {
                         }
                     }
                 },
-                filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact", "vue" }
+                filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact", "vue", "json" }
             })
+            lsp.intelephense.setup({})
+            lsp.gopls.setup({})
+            lsp.pyright.setup({})
+            lsp.rust_analyzer.setup({})
 
             -- Keymaps
             vim.keymap.set("n", "<leader>ca", function()
